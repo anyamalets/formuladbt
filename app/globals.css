@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Brand palette — purple (Meditation & Mindfulness preset, см. design-system/MASTER.md) */
+  --color-bg: #F7F3FD;
+  --color-bg-deep: #EFE7FC;
+  --color-surface: #FFFFFF;
+  --color-surface-muted: #F1EEF5;
+  --color-primary: #7C3AED;
+  --color-primary-dark: #6D28D9;
+  --color-on-primary: #FFFFFF;
+  --color-accent: #059669;
+  --color-fg: #1E1B4B;
+  --color-fg-muted: #4A4A6A;
+  --color-border: #DDD6FE;
+  --color-accent-warm: #C4654A;
+  --color-crisis-bg: #FEF3EC;
+
+  --font-heading: var(--font-newsreader);
+  --font-body: var(--font-roboto);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), Georgia, serif;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--color-fg);
+}
+
+h3, h4, h5, h6 {
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-weight: 600;
+}
+
+::selection {
+  background-color: var(--color-border);
+  color: var(--color-fg);
+}
+
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Legal pages typography */
+.prose-legal h2 {
+  font-size: 22px;
+  font-weight: 600;
+  font-family: var(--font-body), system-ui, sans-serif;
+  margin-top: 36px;
+  margin-bottom: 12px;
+  color: var(--color-fg);
+}
+.prose-legal h3 {
+  font-size: 18px;
+  font-weight: 600;
+  font-family: var(--font-body), system-ui, sans-serif;
+  margin-top: 24px;
+  margin-bottom: 8px;
+  color: var(--color-fg);
+}
+.prose-legal ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+.prose-legal ul li::marker { color: var(--color-primary); }
+.prose-legal ul li { margin-bottom: 6px; }
+.prose-legal strong { font-weight: 600; color: var(--color-fg); }
+.prose-legal a { color: var(--color-primary); text-decoration: underline; text-underline-offset: 3px; }
+.prose-legal a:hover { color: var(--color-primary-dark); }

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Formula DBT — Hero color preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --primary: #7A8B6F;
+    --primary-dark: #5F6F55;
+    --fg: #2B2B2B;
+    --fg-muted: #5C5C5C;
+    --border: #E5DFD2;
+    --surface: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    color: var(--fg);
+    font-family: 'Roboto', system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    background: #FAF8F3;
+  }
+  h1, h2, h3 { font-family: 'Newsreader', Georgia, serif; font-weight: 500; line-height: 1.2; }
+
+  /* Sticky switcher */
+  .switcher {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+  }
+  .switcher button {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--fg);
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 200ms ease-out;
+  }
+  .switcher button.active { background: var(--primary); color: white; border-color: var(--primary); }
+  .switcher .hint { margin-left: auto; color: var(--fg-muted); font-size: 13px; }
+
+  /* Top navigation */
+  nav.topnav {
+    display: flex; gap: 28px; padding: 18px 32px;
+    font-size: 15px;
+  }
+  nav.topnav a { color: var(--fg); text-decoration: none; opacity: 0.85; }
+  nav.topnav a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+  nav.topnav .cta { margin-left: auto; }
+
+  /* Hero variants */
+  .hero { padding: 100px 32px 120px; }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 64px);
+    margin-bottom: 24px;
+    max-width: 900px;
+  }
+  .hero p {
+    font-size: clamp(18px, 1.6vw, 21px);
+    color: var(--fg-muted);
+    max-width: 660px;
+    margin-bottom: 36px;
+  }
+  .cta-btn {
+    display: inline-block;
+    padding: 16px 36px;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    min-height: 48px;
+    transition: background 200ms ease-out;
+  }
+  .cta-btn:hover { background: var(--primary-dark); }
+
+  /* Hero color options */
+  body.opt-a .hero { background: #FAF8F3; }                       /* A: пергаментный кремовый */
+  body.opt-a nav.topnav { background: #FAF8F3; border-bottom: 1px solid var(--border); }
+
+  body.opt-b .hero { background: #E8EFE2; }                       /* B: бледная мята (soft wash) */
+  body.opt-b nav.topnav { background: #E8EFE2; }
+
+  body.opt-c .hero { background: #A8C5A0; }                       /* C: Tilda-mint (как сейчас) */
+  body.opt-c nav.topnav { background: #A8C5A0; }
+
+  body.opt-d .hero {                                              /* D: gradient mint→cream */
+    background: linear-gradient(135deg, #C9D9BC 0%, #F2EDE3 100%);
+  }
+  body.opt-d nav.topnav { background: transparent; }
+
+  /* Below-hero strip — чтобы видеть переход к остальной странице */
+  .below {
+    padding: 64px 32px;
+    background: #FAF8F3;
+  }
+  .below h2 {
+    font-size: clamp(28px, 3.5vw, 40px);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .below p {
+    text-align: center;
+    color: var(--fg-muted);
+    max-width: 640px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body class="opt-a">
+  <div class="switcher">
+    <button id="ba" class="active" onclick="setOpt('a')">A · Кремовый (тихий, editorial)</button>
+    <button id="bb" onclick="setOpt('b')">B · Бледная мята (soft wash)</button>
+    <button id="bc" onclick="setOpt('c')">C · Tilda-мята (как сейчас)</button>
+    <button id="bd" onclick="setOpt('d')">D · Градиент мята→кремовый</button>
+    <span class="hint">Меняй варианты — увидишь переход hero → следующий блок</span>
+  </div>
+
+  <nav class="topnav">
+    <a href="#">О команде</a>
+    <a href="#">Программа</a>
+    <a href="#">Что такое ДБТ</a>
+    <a href="#">Кому подходит</a>
+    <a class="cta" href="#"><strong>Записаться →</strong></a>
+  </nav>
+
+  <section class="hero">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h1>Формула ДБТ</h1>
+      <p>Команда из 8 психологов. Работаем там, где стандартного формата индивидуальной терапии недостаточно: эмоции захлёстывают, кризисы случаются между сессиями, изменения идут медленно.</p>
+      <a href="#" class="cta-btn">Оставить заявку</a>
+    </div>
+  </section>
+
+  <section class="below">
+    <h2>Кто работает в команде</h2>
+    <p>Команда психологов с подготовкой по ДБТ. Для просмотра контраста и перехода фон/секция.</p>
+  </section>
+
+  <script>
+    function setOpt(o) {
+      document.body.className = 'opt-' + o;
+      ['a','b','c','d'].forEach(x => {
+        document.getElementById('b'+x).classList.toggle('active', x === o);
+      });
+    }
+  </script>
+</body>
+</html>

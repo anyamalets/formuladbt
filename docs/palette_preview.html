@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Formula DBT — Palette preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  /* === ОБЩИЙ КАРКАС === */
+  :root {
+    --primary: #8B5CF6;
+    --primary-dark: #7C3AED;
+    --accent: #059669;
+    --bg: #FAF5FF;
+    --bg-deep: #F7F3FD;
+    --surface: #FFFFFF;
+    --fg: #4C1D95;
+    --fg-muted: #6B6F87;
+    --border: #EDE9FE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    color: var(--fg);
+    background: var(--bg);
+    font-family: 'Roboto', system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    transition: background 250ms ease;
+  }
+  h1, h2, h3 { font-family: 'Newsreader', Georgia, serif; font-weight: 500; line-height: 1.2; color: var(--fg); }
+
+  /* === SWITCHER === */
+  .switcher {
+    position: sticky; top: 0; z-index: 10;
+    background: white;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 14px 24px;
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    color: #2B2B2B;
+  }
+  .switcher button {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1.5px solid #E5E7EB;
+    background: transparent;
+    color: #2B2B2B;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .switcher button.active { background: #2B2B2B; color: white; border-color: #2B2B2B; }
+  .switcher .hint { margin-left: auto; color: #6B6B6B; font-size: 13px; }
+
+  /* === NAV === */
+  nav.topnav {
+    display: flex; gap: 28px; padding: 18px 32px;
+    font-size: 15px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  nav.topnav a { color: var(--fg); text-decoration: none; opacity: 0.85; font-weight: 500; }
+  nav.topnav a:hover { opacity: 1; }
+  nav.topnav .cta { margin-left: auto; }
+
+  /* === HERO === */
+  .hero { padding: 100px 32px 120px; background: var(--bg); }
+  .hero h1 { font-size: clamp(40px, 6vw, 64px); margin-bottom: 24px; max-width: 900px; }
+  .hero p { font-size: clamp(18px, 1.6vw, 21px); color: var(--fg-muted); max-width: 660px; margin-bottom: 36px; }
+  .cta-btn {
+    display: inline-block;
+    padding: 16px 36px;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    min-height: 48px;
+    transition: background 200ms ease-out;
+  }
+  .cta-btn:hover { background: var(--primary-dark); }
+  .accent-link { color: var(--accent); font-weight: 500; }
+
+  /* === SECTION ниже hero (карточки команды, для контекста) === */
+  .below { padding: 64px 32px; background: white; }
+  .below h2 { font-size: clamp(28px, 3.5vw, 40px); text-align: center; margin-bottom: 16px; }
+  .below .subtitle { text-align: center; color: var(--fg-muted); max-width: 640px; margin: 0 auto 48px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .card .photo { width: 100%; aspect-ratio: 1; background: var(--bg-deep); border-radius: 8px; margin-bottom: 16px; }
+  .card h3 { font-size: 20px; font-weight: 600; font-family: 'Roboto'; margin-bottom: 8px; }
+  .card .role { color: var(--accent); font-size: 14px; margin-bottom: 12px; font-weight: 500; }
+  .card p { font-size: 15px; color: var(--fg-muted); margin-bottom: 12px; }
+  .card .price { font-weight: 600; color: var(--fg); }
+
+  /* === BG разделитель цветной === */
+  .deep-band {
+    background: var(--bg-deep);
+    padding: 80px 32px;
+    text-align: center;
+  }
+  .deep-band h2 { margin-bottom: 12px; }
+  .deep-band p { color: var(--fg-muted); max-width: 600px; margin: 0 auto; }
+
+  /* === ПАЛИТРА 1: Mental Health App — лавандовый === */
+  body.opt-lavender {
+    --primary: #8B5CF6;
+    --primary-dark: #7C3AED;
+    --accent: #059669;
+    --bg: #FAF5FF;
+    --bg-deep: #F1EBFB;
+    --fg: #2B1B5B;
+    --fg-muted: #6B6F87;
+    --border: #EDE9FE;
+  }
+
+  /* === ПАЛИТРА 2: Meditation/Mindfulness — глубже пурпур === */
+  body.opt-purple {
+    --primary: #7C3AED;
+    --primary-dark: #6D28D9;
+    --accent: #059669;
+    --bg: #F7F3FD;
+    --bg-deep: #EFE7FC;
+    --fg: #1E1B4B;
+    --fg-muted: #4A4A6A;
+    --border: #DDD6FE;
+  }
+
+  /* === ПАЛИТРА 3: Healthcare — медицинский cyan === */
+  body.opt-cyan {
+    --primary: #0891B2;
+    --primary-dark: #0E7490;
+    --accent: #059669;
+    --bg: #ECFEFF;
+    --bg-deep: #DBF6F9;
+    --fg: #164E63;
+    --fg-muted: #4A6770;
+    --border: #A5F3FC;
+  }
+
+  /* === ПАЛИТРА 4: Senior care — синий доверия === */
+  body.opt-blue {
+    --primary: #0369A1;
+    --primary-dark: #075985;
+    --accent: #16A34A;
+    --bg: #F0F9FF;
+    --bg-deep: #DBEEFD;
+    --fg: #0C4A6E;
+    --fg-muted: #44617A;
+    --border: #BAE6FD;
+  }
+
+  /* === ПАЛИТРА 5: Текущая олива (для сравнения) === */
+  body.opt-olive {
+    --primary: #7A8B6F;
+    --primary-dark: #5F6F55;
+    --accent: #5F6F55;
+    --bg: #E8EFE2;
+    --bg-deep: #DCE6D2;
+    --fg: #2B2B2B;
+    --fg-muted: #5C5C5C;
+    --border: #C9D5BC;
+  }
+</style>
+</head>
+<body class="opt-lavender">
+  <div class="switcher">
+    <button id="b-lavender" class="active" onclick="setOpt('lavender')">1 · Лавандовый (mental-health app)</button>
+    <button id="b-purple" onclick="setOpt('purple')">2 · Глубокий пурпур (meditation)</button>
+    <button id="b-cyan" onclick="setOpt('cyan')">3 · Cyan (healthcare)</button>
+    <button id="b-blue" onclick="setOpt('blue')">4 · Синий доверия (senior care)</button>
+    <button id="b-olive" onclick="setOpt('olive')">5 · Олива (текущая, для сравнения)</button>
+    <span class="hint">Все рекомендации от ui-ux-pro-max для mental-health домена</span>
+  </div>
+
+  <nav class="topnav">
+    <a href="#">О команде</a>
+    <a href="#">Программа</a>
+    <a href="#">Что такое ДБТ</a>
+    <a href="#">Кому подходит</a>
+    <a class="cta" href="#"><strong>Записаться →</strong></a>
+  </nav>
+
+  <section class="hero">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <h1>Формула ДБТ</h1>
+      <p>Команда из 8 психологов. Работаем там, где стандартного формата индивидуальной терапии недостаточно: эмоции захлёстывают, кризисы случаются между сессиями, изменения идут медленно.</p>
+      <a href="#" class="cta-btn">Оставить заявку</a>
+    </div>
+  </section>
+
+  <section class="below">
+    <h2>Кто работает в команде</h2>
+    <p class="subtitle">Команда психологов с подготовкой по ДБТ.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="photo"></div>
+        <h3>Анна Малюточкина</h3>
+        <p class="role">Клинический психолог, КПТ, ACT, ДБТ-терапевт</p>
+        <p>Специализация: РПП — нервная анорексия, нервная булимия, приступообразное переедание.</p>
+        <p class="price">4000 ₽ онлайн</p>
+      </div>
+      <div class="card">
+        <div class="photo"></div>
+        <h3>Мария Петренко</h3>
+        <p class="role">Клинический психолог, к.псих.н., КПТ, ДБТ, CFT-терапевт</p>
+        <p>Депрессивное расстройство, тревожное расстройство, БАР, ПРЛ.</p>
+        <p class="price">3500 ₽ онлайн · 5000 ₽ очно</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="deep-band">
+    <h2>Что такое ДБТ</h2>
+    <p>Диалектико-поведенческая терапия разработана Маршей Линехан. Для людей с пограничным расстройством личности, расстройствами пищевого поведения, ПТСР.</p>
+  </section>
+
+  <script>
+    function setOpt(o) {
+      document.body.className = 'opt-' + o;
+      ['lavender','purple','cyan','blue','olive'].forEach(x => {
+        document.getElementById('b-'+x).classList.toggle('active', x === o);
+      });
+    }
+  </script>
+</body>
+</html>

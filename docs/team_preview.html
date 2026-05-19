@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Formula DBT — Team preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --primary: #7C3AED;
+    --primary-dark: #6D28D9;
+    --accent: #059669;
+    --bg: #F7F3FD;
+    --bg-deep: #EFE7FC;
+    --surface: #FFFFFF;
+    --surface-muted: #F1EEF5;
+    --fg: #1E1B4B;
+    --fg-muted: #4A4A6A;
+    --border: #DDD6FE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'Roboto', system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3 { font-family: 'Newsreader', Georgia, serif; font-weight: 500; line-height: 1.2; color: var(--fg); }
+
+  section { padding: 64px 24px; max-width: 1200px; margin: 0 auto; }
+  section > .header { text-align: center; margin-bottom: 48px; }
+  section > .header h2 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 12px; }
+  section > .header p { color: var(--fg-muted); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: box-shadow 200ms ease-out;
+  }
+  .card:hover { box-shadow: 0 8px 24px rgba(124, 58, 237, 0.08); }
+
+  .card .photo-frame {
+    aspect-ratio: 1;
+    width: 100%;
+    background: var(--bg-deep);
+    overflow: hidden;
+  }
+  .card .photo-frame img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .card .body { padding: 24px; }
+  .card h3 {
+    font-family: 'Roboto'; font-weight: 600; font-size: 20px;
+    margin-bottom: 6px;
+  }
+  .card .role {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 16px;
+  }
+  .card .focus {
+    font-size: 15px;
+    color: var(--fg-muted);
+    margin-bottom: 16px;
+  }
+  .card .focus p + p { margin-top: 10px; }
+  .card .meta {
+    display: flex; flex-direction: column; gap: 6px;
+    font-size: 14px;
+    color: var(--fg-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+  }
+  .card .meta .price {
+    color: var(--fg);
+    font-weight: 500;
+  }
+  .card .links {
+    display: flex; flex-wrap: wrap; gap: 8px;
+    margin-top: 16px;
+  }
+  .card .links a {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: var(--bg-deep);
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 200ms ease-out;
+  }
+  .card .links a:hover { background: var(--border); }
+  .card .links a svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* Сравнение before/after */
+  .compare { background: var(--surface-muted); padding: 48px 24px; }
+  .compare h2 { text-align: center; margin-bottom: 24px; font-size: 24px; }
+  .compare-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .compare-grid > div { text-align: center; }
+  .compare-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; }
+  .compare-grid .label { font-size: 13px; color: var(--fg-muted); margin-top: 8px; }
+</style>
+</head>
+<body>
+  <section>
+    <div class="header">
+      <h2>Кто работает в команде</h2>
+      <p>Команда психологов с подготовкой по ДБТ.</p>
+    </div>
+
+    <div class="grid">
+      <!-- Анна -->
+      <div class="card">
+        <div class="photo-frame">
+          <img src="../public/team/portraits/anna-malyutochkina.jpg" alt="Анна Малюточкина" />
+        </div>
+        <div class="body">
+          <h3>Анна Малюточкина</h3>
+          <p class="role">Клинический психолог · КПТ, ACT, ДБТ</p>
+          <div class="focus">
+            <p>РПП — основная специализация: нервная анорексия, нервная булимия, приступообразное переедание, фиксация на «правильном» питании и весе.</p>
+            <p>Смежные темы, которые часто идут вместе с пищевыми сложностями: тревога, СДВГ, сложности с регуляцией эмоций, перфекционизм, прокрастинация.</p>
+            <p>BFRB — выдёргивание волос, ковыряние кожи. Зависимости от курения и алкоголя.</p>
+          </div>
+          <div class="meta">
+            <span>Взрослые от 18 лет</span>
+            <span>Онлайн</span>
+            <span class="price">4 000 ₽</span>
+          </div>
+          <div class="links">
+            <a href="https://anyamalets.ru" target="_blank" rel="noopener">Сайт</a>
+            <a href="https://t.me/anya_malets" target="_blank" rel="noopener">Telegram</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Мария -->
+      <div class="card">
+        <div class="photo-frame">
+          <img src="../public/team/portraits/maria-petrenko.jpg" alt="Мария Петренко" />
+        </div>
+        <div class="body">
+          <h3>Мария Петренко</h3>
+          <p class="role">Клинический психолог, к.псих.н. · КПТ, ДБТ, CFT</p>
+          <div class="focus">
+            <p>Депрессивное расстройство, тревожное расстройство, БАР, ПРЛ.</p>
+            <p>А также жалобы на: апатию, подавленность; тревожные состояния и страхи (включая социальную тревогу); прокрастинацию, сложности во взаимоотношениях и коммуникации с людьми; трудности в понимании и регуляции эмоций, тяжёлые эмоции (гнев, стыд, вина).</p>
+          </div>
+          <div class="meta">
+            <span>Взрослые от 18 лет</span>
+            <span>Онлайн · очно в Санкт-Петербурге</span>
+            <span class="price">3 500 ₽ онлайн · 5 000 ₽ очно</span>
+          </div>
+          <div class="links">
+            <a href="https://www.b17.ru/mari_petrenko/?prt=885327" target="_blank" rel="noopener">b17</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Алия -->
+      <div class="card">
+        <div class="photo-frame">
+          <img src="../public/team/portraits/aliya-jailaubekova.jpg" alt="Алия Джайлаубекова" />
+        </div>
+        <div class="body">
+          <h3>Алия Джайлаубекова</h3>
+          <p class="role">Практический психолог · КПТ, ACT, ДБТ</p>
+          <p class="focus">Тревога, депрессия, панические атаки, эмоциональная нестабильность, суицидальные мысли, проблемы в отношениях, профессиональное выгорание. Подход сочетает научно обоснованные методы психотерапии с коучинговыми техниками.</p>
+          <div class="meta">
+            <span>Взрослые от 18 лет</span>
+            <span>Онлайн · очно в Астане</span>
+            <span class="price">3 000 ₽ онлайн · 3 500 ₽ очно</span>
+          </div>
+          <div class="links">
+            <a href="https://www.aliyajailaubekova.com/" target="_blank" rel="noopener">Сайт</a>
+            <a href="https://www.instagram.com/aliya.jailaubekova" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.b17.ru/id1023155/" target="_blank" rel="noopener">b17</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Инна -->
+      <div class="card">
+        <div class="photo-frame">
+          <img src="../public/team/portraits/inna-mosievskih.jpg" alt="Инна Мосиевских" />
+        </div>
+        <div class="body">
+          <h3>Инна Мосиевских</h3>
+          <p class="role">Клинический психолог · КПТ, ACT, ДБТ</p>
+          <p class="focus">РПП и переедание. Работа с отношением к телу и еде, влияние гормональных факторов на пищевое поведение, психотерапевтические группы.</p>
+          <div class="meta">
+            <span>Взрослые от 18 лет</span>
+            <span>Онлайн · очно в Москве</span>
+            <span class="price">3 500 ₽ онлайн · 4 000 ₽ очно</span>
+          </div>
+          <div class="links">
+            <a href="https://t.me/innaslod" target="_blank" rel="noopener">Telegram</a>
+            <a href="https://vk.com/innaslod_psy" target="_blank" rel="noopener">VK</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="compare">
+    <h2>Унификация — все 4 портрета вместе</h2>
+    <div class="compare-grid">
+      <div><img src="../public/team/portraits/anna-malyutochkina.jpg" alt="Анна" /><div class="label">Анна</div></div>
+      <div><img src="../public/team/portraits/maria-petrenko.jpg" alt="Мария" /><div class="label">Мария</div></div>
+      <div><img src="../public/team/portraits/aliya-jailaubekova.jpg" alt="Алия" /><div class="label">Алия</div></div>
+      <div><img src="../public/team/portraits/inna-mosievskih.jpg" alt="Инна" /><div class="label">Инна</div></div>
+    </div>
+  </div>
+</body>
+</html>

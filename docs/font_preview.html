@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Formula DBT — Font Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;500;600&family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+<style>
+  :root {
+    --primary: #7A8B6F;
+    --primary-dark: #5F6F55;
+    --bg: #FAF8F3;
+    --surface: #FFFFFF;
+    --surface-muted: #F2EDE3;
+    --fg: #2B2B2B;
+    --fg-muted: #5C5C5C;
+    --border: #E5DFD2;
+    --accent-warm: #C4654A;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    -webkit-font-smoothing: antialiased;
+  }
+  .switcher {
+    position: sticky; top: 0; z-index: 10;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 24px;
+    display: flex; gap: 12px; align-items: center;
+    font-family: 'Roboto', sans-serif;
+  }
+  .switcher button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: 1.5px solid var(--border);
+    background: transparent;
+    color: var(--fg);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 200ms ease-out;
+  }
+  .switcher button.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+  .switcher span {
+    margin-left: auto;
+    color: var(--fg-muted);
+    font-size: 13px;
+  }
+
+  /* Variant A: Newsreader + Roboto */
+  body.font-a .heading { font-family: 'Newsreader', serif; font-weight: 500; }
+  body.font-a .body { font-family: 'Roboto', sans-serif; }
+
+  /* Variant B: Roboto + Open Sans */
+  body.font-b .heading { font-family: 'Roboto', sans-serif; font-weight: 700; }
+  body.font-b .body { font-family: 'Open Sans', sans-serif; }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 24px;
+  }
+
+  /* Hero */
+  .hero { padding: 96px 24px 64px; }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 56px);
+    line-height: 1.15;
+    margin-bottom: 24px;
+    max-width: 900px;
+  }
+  .hero p {
+    font-size: clamp(18px, 2vw, 20px);
+    line-height: 1.6;
+    color: var(--fg-muted);
+    max-width: 720px;
+    margin-bottom: 32px;
+  }
+  .cta {
+    display: inline-block;
+    padding: 16px 32px;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    min-height: 48px;
+    transition: background 200ms ease-out;
+  }
+  .cta:hover { background: var(--primary-dark); }
+
+  /* Section */
+  section { padding: 64px 24px; }
+  section h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  section .subtitle {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--fg-muted);
+    max-width: 720px;
+    margin-bottom: 48px;
+  }
+
+  /* Long-form text (DBT explanation) */
+  .longform { max-width: 720px; margin: 0 auto; }
+  .longform p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  .longform strong { font-weight: 600; }
+
+  /* Card grid */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .card h3 {
+    font-size: 20px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .card p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--fg-muted);
+  }
+
+  /* Bg variations */
+  .bg-muted { background: var(--surface-muted); }
+
+  /* Crisis box */
+  .crisis {
+    background: var(--surface-muted);
+    border-left: 4px solid var(--accent-warm);
+    padding: 24px;
+    border-radius: 8px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .crisis h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .crisis p { font-size: 16px; line-height: 1.6; margin-bottom: 12px; }
+  .crisis ul { list-style: none; padding: 0; }
+  .crisis li { padding: 6px 0; font-size: 16px; }
+  .crisis li::before { content: "• "; color: var(--accent-warm); margin-right: 8px; }
+</style>
+</head>
+<body class="font-a">
+  <div class="switcher">
+    <button id="btnA" class="active" onclick="setFont('a')">A · Newsreader + Roboto</button>
+    <button id="btnB" onclick="setFont('b')">B · Roboto + Open Sans</button>
+    <span>Переключай вверху, листай вниз — сравни на разных блоках</span>
+  </div>
+
+  <section class="hero">
+    <div class="container" style="padding: 0;">
+      <h1 class="heading">Формула ДБТ</h1>
+      <p class="body">Команда из восьми психологов. Работаем там, где стандартного формата индивидуальной терапии недостаточно: эмоции захлёстывают, кризисы случаются между сессиями, изменения идут медленно.</p>
+      <a href="#" class="cta body">Оставить заявку</a>
+    </div>
+  </section>
+
+  <section class="bg-muted">
+    <div class="container">
+      <h2 class="heading" style="text-align: center;">Что такое ДБТ</h2>
+      <p class="subtitle body" style="text-align: center; margin-left: auto; margin-right: auto;">Длинное объяснение метода — здесь типографика особенно важна для удержания внимания.</p>
+      <div class="longform body">
+        <p>Диалектико-поведенческая терапия (ДБТ) разработана Маршей Линехан в США. Сначала — для людей с пограничным расстройством личности и хроническим суицидальным поведением. Позже — для расстройств пищевого поведения, ПТСР, биполярного расстройства, зависимостей.</p>
+        <p>В основе ДБТ — <strong>биосоциальная модель</strong>. Интенсивные эмоции — не «слабый характер» и не «неумение себя контролировать». Это сочетание биологической чувствительности нервной системы и опыта обесценивания: когда окружение годами реагировало на эмоции словами «не плачь», «возьми себя в руки», «прекрати». В таких условиях навыки управления эмоциями просто не формируются. С этим можно работать.</p>
+        <p>ДБТ сочетает две позиции, которые обычно противоречат друг другу:</p>
+        <p><strong>Принятие.</strong> Терапевт принимает ваши реакции как имеющие причины. Не уговаривает «успокоиться» и не объясняет, что «всё не так страшно».</p>
+        <p><strong>Изменение.</strong> Параллельно идёт работа с тем, что разрушает жизнь: разрывы с близкими, потеря работы, способы причинить себе вред.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <h2 class="heading" style="text-align: center;">Что входит в программу</h2>
+      <p class="subtitle body" style="text-align: center; margin-left: auto; margin-right: auto;">Четыре части. Они работают вместе, и без любой из них программа теряет эффективность.</p>
+      <div class="grid">
+        <div class="card">
+          <h3 class="heading">Индивидуальные сессии</h3>
+          <p class="body">Раз в неделю, 50-55 минут. Терапевт помогает разобрать, что привело к кризису на этой неделе, какие навыки сработали, какие нет.</p>
+        </div>
+        <div class="card">
+          <h3 class="heading">Тренинг навыков</h3>
+          <p class="body">Раз в неделю, 2 часа. Это обучение, а не круг поддержки. Четыре модуля за год: осознанность, эмоциональная регуляция, межличностная эффективность, стрессоустойчивость.</p>
+        </div>
+        <div class="card">
+          <h3 class="heading">Телефонный коучинг</h3>
+          <p class="body">Если в течение недели стало плохо и сложно справиться — можно позвонить или написать терапевту. Короткий разговор: какой навык применить прямо сейчас.</p>
+        </div>
+        <div class="card">
+          <h3 class="heading">Команда терапевтов</h3>
+          <p class="body">Каждый терапевт раз в неделю встречается с командой коллег. От качества команды зависит качество терапии.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-muted">
+    <div class="container">
+      <div class="crisis">
+        <h3 class="heading">Если сейчас острый кризис</h3>
+        <p class="body">Сайт не является службой экстренной помощи. Координатор обрабатывает заявки в течение рабочего дня. Если прямо сейчас невыносимо, есть мысли о суициде или самоповреждении — обратитесь в службы, которые помогают в моменте:</p>
+        <ul class="body">
+          <li>112 — единый номер экстренных служб</li>
+          <li>8 (495) 575-87-70 — Московская служба психологической помощи, круглосуточно</li>
+          <li>8-800-2000-122 — телефон доверия, бесплатно, круглосуточно</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function setFont(v) {
+      document.body.classList.remove('font-a', 'font-b');
+      document.body.classList.add('font-' + v);
+      document.getElementById('btnA').classList.toggle('active', v === 'a');
+      document.getElementById('btnB').classList.toggle('active', v === 'b');
+    }
+  </script>
+</body>
+</html>
