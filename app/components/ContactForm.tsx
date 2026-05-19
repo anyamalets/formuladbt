@@ -30,7 +30,7 @@ export default function ContactForm() {
       <div className="bg-[var(--color-bg-deep)] border border-[var(--color-border)] rounded-2xl p-8 md:p-10 text-center">
         <h3
           className="text-[24px] md:text-[28px] font-medium text-[var(--color-fg)] mb-3"
-          style={{ fontFamily: "var(--font-newsreader)" }}
+          style={{ fontFamily: "var(--font-serif)" }}
         >
           Заявка отправлена
         </h3>

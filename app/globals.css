@@ -16,7 +16,7 @@
   --color-accent-warm: #C4654A;
   --color-crisis-bg: #FEF3EC;
 
-  --font-heading: var(--font-newsreader);
+  --font-heading: var(--font-serif);
   --font-body: var(--font-roboto);
 }
 

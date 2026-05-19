@@ -5,7 +5,7 @@ export default function TopNav() {
   return (
     <header className="sticky top-0 z-40 bg-[var(--color-bg)]/90 backdrop-blur-sm border-b border-[var(--color-border)]">
       <nav className="max-w-[1200px] mx-auto px-6 md:px-10 py-4 flex items-center gap-6 md:gap-8 text-[15px]">
-        <span className="font-medium text-[var(--color-fg)] mr-auto md:mr-2" style={{ fontFamily: "var(--font-newsreader)" }}>
+        <span className="font-medium text-[var(--color-fg)] mr-auto md:mr-2" style={{ fontFamily: "var(--font-serif)" }}>
           Формула ДБТ
         </span>
         <div className="hidden md:flex items-center gap-7">

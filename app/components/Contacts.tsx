@@ -6,7 +6,7 @@ export default function Contacts() {
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-16 md:py-20 text-center">
         <h2
           className="text-[32px] md:text-[40px] font-medium text-[var(--color-fg)]"
-          style={{ fontFamily: "var(--font-newsreader)" }}
+          style={{ fontFamily: "var(--font-serif)" }}
         >
           Как связаться
         </h2>

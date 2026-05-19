@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Newsreader, Roboto } from "next/font/google";
+import { Lora, Roboto } from "next/font/google";
 import "./globals.css";
 
 const SITE_URL = "https://formuladbt.ru";
 
-const newsreader = Newsreader({
-  variable: "--font-newsreader",
+const serif = Lora({
+  variable: "--font-serif",
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -42,7 +42,7 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={`${newsreader.variable} ${roboto.variable} h-full antialiased`}
+      className={`${serif.variable} ${roboto.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <a

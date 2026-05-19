@@ -7,7 +7,7 @@ export default function Hero() {
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-24 md:py-32 lg:py-40">
         <h1
           className="text-[40px] md:text-[56px] lg:text-[64px] font-medium leading-[1.1] tracking-tight max-w-3xl text-[var(--color-fg)]"
-          style={{ fontFamily: "var(--font-newsreader)" }}
+          style={{ fontFamily: "var(--font-serif)" }}
         >
           {HERO.title}
         </h1>

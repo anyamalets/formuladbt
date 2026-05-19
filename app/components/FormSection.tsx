@@ -8,7 +8,7 @@ export default function FormSection() {
           <div className="text-center mb-10 md:mb-12">
             <h2
               className="text-[32px] md:text-[40px] font-medium text-[var(--color-fg)]"
-              style={{ fontFamily: "var(--font-newsreader)" }}
+              style={{ fontFamily: "var(--font-serif)" }}
             >
               Записаться
             </h2>

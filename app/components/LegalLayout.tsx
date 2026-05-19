@@ -16,7 +16,7 @@ export default function LegalLayout({ title, effectiveDate, children }: Props) {
         <article className="max-w-3xl mx-auto px-6 md:px-10 py-16 md:py-24">
           <h1
             className="text-[32px] md:text-[44px] font-medium text-[var(--color-fg)] leading-tight"
-            style={{ fontFamily: "var(--font-newsreader)" }}
+            style={{ fontFamily: "var(--font-serif)" }}
           >
             {title}
           </h1>

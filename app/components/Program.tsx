@@ -7,7 +7,7 @@ export default function Program() {
         <div className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
           <h2
             className="text-[32px] md:text-[40px] font-medium text-[var(--color-fg)]"
-            style={{ fontFamily: "var(--font-newsreader)" }}
+            style={{ fontFamily: "var(--font-serif)" }}
           >
             {PROGRAM.title}
           </h2>

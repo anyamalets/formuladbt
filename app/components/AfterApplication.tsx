@@ -7,7 +7,7 @@ export default function AfterApplication() {
         <div className="max-w-3xl mx-auto">
           <h2
             className="text-[32px] md:text-[40px] font-medium text-[var(--color-fg)] text-center"
-            style={{ fontFamily: "var(--font-newsreader)" }}
+            style={{ fontFamily: "var(--font-serif)" }}
           >
             {AFTER_APPLICATION.title}
           </h2>
