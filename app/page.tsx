@@ -18,11 +18,11 @@ export default function Home() {
       <TopNav />
       <main id="main-content" className="flex-1">
         <Hero />
-        <Team />
         <AboutDbt />
         <Program />
-        <Duration />
         <Criteria />
+        <Duration />
+        <Team />
         <CrisisBox />
         <AfterApplication />
         <FormSection />
