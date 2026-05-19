@@ -12,8 +12,8 @@ export default function Team() {
           >
             Кто работает в команде
           </h2>
-          <p className="mt-3 text-[17px] text-[var(--color-fg-muted)]">
-            Команда психологов с подготовкой по ДБТ.
+          <p className="mt-3 text-[17px] text-[var(--color-fg-muted)] max-w-2xl mx-auto">
+            С июня 2025 формируем ДБТ-команду: групповое самообучение по протоколу Линехан и интенсив Behavioral Tech (заканчиваем часть 2 в октябре 2026).
           </p>
         </div>
 

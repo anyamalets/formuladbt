@@ -23,8 +23,8 @@ export default function Home() {
         <Program />
         <Duration />
         <Criteria />
-        <AfterApplication />
         <CrisisBox />
+        <AfterApplication />
         <FormSection />
         <Faq />
         <Contacts />
