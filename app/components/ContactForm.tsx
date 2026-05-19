@@ -96,9 +96,12 @@ export default function ContactForm() {
           id="message"
           name="message"
           rows={4}
-          placeholder="Например: эмоциональная нестабильность, РПП, ПРЛ, направил врач в ДБТ"
+          placeholder="Например: эмоциональная нестабильность, РПП, ПРЛ; или направление от врача"
           className="w-full px-4 py-3 rounded-lg border border-[var(--color-border)] bg-white text-[16px] leading-[1.5] focus:outline-none focus:border-[var(--color-primary)] resize-none"
         />
+        <p className="mt-2 text-[13px] text-[var(--color-fg-muted)] leading-[1.5]">
+          Можно описать состояние своими словами или просто оставить пустым. Подробности обсудим в переписке.
+        </p>
       </div>
 
       <label className="flex items-start gap-3 cursor-pointer">
