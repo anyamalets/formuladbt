@@ -35,7 +35,7 @@ export default function ContactForm() {
           Заявка отправлена
         </h3>
         <p className="text-[16px] text-[var(--color-fg-muted)]">
-          Координатор напишет вам в течение рабочего дня.
+          Координатор напишет в Telegram в течение рабочего дня. По выходным — в понедельник утром.
         </p>
       </div>
     );
@@ -121,7 +121,7 @@ export default function ContactForm() {
         disabled={pending}
         className="w-full sm:w-auto px-10 py-4 rounded-lg bg-[var(--color-primary)] text-white text-[16px] font-medium hover:bg-[var(--color-primary-dark)] transition-colors min-h-12 disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {pending ? "Отправляем..." : "Записаться"}
+        {pending ? "Отправляем заявку..." : "Отправить заявку"}
       </button>
 
       {status === "error" && (
@@ -131,7 +131,7 @@ export default function ContactForm() {
       )}
 
       <p className="text-[13px] text-[var(--color-fg-muted)] leading-[1.5]">
-        Заявка не обязывает к консультации. Нажимая «Записаться», вы соглашаетесь с политикой обработки персональных данных.
+        Заявка не обязывает к консультации.
       </p>
     </form>
   );
