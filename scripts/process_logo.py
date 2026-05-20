@@ -18,32 +18,29 @@ DST_MARK = ROOT / "public" / "logo-mark.png"
 DST_ICON = ROOT / "app" / "icon.png"
 
 
-def remove_gray_background(im: Image.Image, tolerance: int = 18) -> Image.Image:
-    """Делает серый фон прозрачным.
+def remove_gray_background(im: Image.Image) -> Image.Image:
+    """Делает серый фон прозрачным через насыщенность.
 
-    Сэмплируем угловые пиксели, считаем их фоновым серым.
-    Все пиксели, близкие к этому серому по RGB, → alpha=0.
+    Лепестки — насыщенные цвета. Серый фон — низкая насыщенность.
+    Alpha = функция от saturation: насыщенно → opaque, бесцветно → transparent.
+    Это даёт чистые края без halo от анти-алиасинга оригинала.
     """
     im = im.convert("RGBA")
-    arr = np.array(im)
+    arr = np.array(im).astype(int)
+    r, g, b = arr[:, :, 0], arr[:, :, 1], arr[:, :, 2]
 
-    # Сэмпл серого из углов (среднее)
-    corners = np.array([
-        arr[0, 0, :3],
-        arr[0, -1, :3],
-        arr[-1, 0, :3],
-        arr[-1, -1, :3],
-    ])
-    bg = corners.mean(axis=0)
+    # Насыщенность (HSL approximation)
+    mx = np.maximum(np.maximum(r, g), b)
+    mn = np.minimum(np.minimum(r, g), b)
+    saturation = (mx - mn).astype(int)  # 0..255
 
-    r, g, b = arr[:, :, 0].astype(int), arr[:, :, 1].astype(int), arr[:, :, 2].astype(int)
-    # Цветовое расстояние
-    diff = np.sqrt((r - bg[0]) ** 2 + (g - bg[1]) ** 2 + (b - bg[2]) ** 2)
+    # Linear mapping: saturation < 12 → alpha 0; saturation > 30 → alpha 255
+    # Между ними — плавный переход (антиалиасинг по нашим условиям)
+    alpha = np.clip((saturation - 12) * 14, 0, 255).astype(np.uint8)
 
-    # Soft alpha: внутри tolerance — полностью прозрачно, дальше — полностью видно
-    alpha = np.clip((diff - tolerance) * 12, 0, 255).astype(np.uint8)
-    arr[:, :, 3] = alpha
-    return Image.fromarray(arr, mode="RGBA")
+    arr_out = arr.astype(np.uint8)
+    arr_out[:, :, 3] = alpha
+    return Image.fromarray(arr_out, mode="RGBA")
 
 
 def main():
@@ -62,7 +59,7 @@ def main():
     square.paste(petals, ((side - pw) // 2, (side - ph) // 2))
 
     # Прозрачная марка для TopNav/Footer
-    mark = remove_gray_background(square, tolerance=15)
+    mark = remove_gray_background(square)
     mark = mark.resize((512, 512), Image.LANCZOS)
     mark.save(DST_MARK, "PNG", optimize=True)
     print(f"  OK  {DST_MARK.relative_to(ROOT)} ({mark.size})")
