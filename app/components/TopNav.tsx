@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { NAV } from "../data/site";
@@ -29,10 +30,18 @@ export default function TopNav() {
       <nav className="max-w-[1200px] mx-auto px-6 md:px-10 py-4 flex items-center gap-6 md:gap-8 text-[15px]">
         <Link
           href="/"
-          className="font-medium text-[var(--color-fg)] mr-auto md:mr-2"
+          className="flex items-center gap-2.5 font-medium text-[var(--color-fg)] mr-auto md:mr-2"
           style={{ fontFamily: "var(--font-serif)" }}
         >
-          Формула ДБТ
+          <Image
+            src="/logo-mark.png"
+            alt=""
+            width={36}
+            height={36}
+            className="w-8 h-8 md:w-9 md:h-9"
+            priority
+          />
+          <span>Формула ДБТ</span>
         </Link>
         <div className="hidden md:flex items-center gap-7">
           {NAV.slice(0, -1).map((item) => (
