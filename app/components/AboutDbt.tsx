@@ -1,6 +1,11 @@
 import { ABOUT_DBT } from "../data/content";
 
 export default function AboutDbt() {
+  // Split paragraphs: last one is about the team, render it AFTER acceptance/change cards
+  // so it doesn't break the "two positions → cards" narrative flow
+  const teamParagraph = ABOUT_DBT.paragraphs[ABOUT_DBT.paragraphs.length - 1];
+  const introParagraphs = ABOUT_DBT.paragraphs.slice(0, -1);
+
   return (
     <section id="about-dbt" className="bg-[var(--color-bg-deep)] scroll-mt-20">
       <div className="max-w-[1200px] mx-auto px-6 md:px-10 py-20 md:py-28">
@@ -13,7 +18,7 @@ export default function AboutDbt() {
           </h2>
 
           <div className="mt-10 md:mt-12 space-y-6 text-[17px] md:text-[18px] leading-[1.7] text-[var(--color-fg)] max-w-prose mx-auto">
-            {ABOUT_DBT.paragraphs.map((p, i) => (
+            {introParagraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
           </div>
@@ -33,6 +38,10 @@ export default function AboutDbt() {
               </p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-14 md:mt-16 max-w-prose mx-auto text-[17px] md:text-[18px] leading-[1.7] text-[var(--color-fg)]">
+          <p>{teamParagraph}</p>
         </div>
       </div>
     </section>

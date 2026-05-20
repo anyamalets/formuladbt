@@ -29,6 +29,22 @@ export default function CrisisBox() {
                 </span>
               </li>
             ))}
+            {CRISIS.chats?.map((c, i) => (
+              <li key={`chat-${i}`} className="flex items-start gap-2 text-[16px] text-[var(--color-fg)]">
+                <span className="text-[var(--color-accent-warm)] mt-0.5">•</span>
+                <span>
+                  <a
+                    href={c.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-[var(--color-primary-dark)] underline underline-offset-3 hover:text-[var(--color-primary)]"
+                  >
+                    {c.label}
+                  </a>{" "}
+                  — {c.desc}
+                </span>
+              </li>
+            ))}
           </ul>
           <p className="mt-4 text-[16px] leading-[1.65] text-[var(--color-fg-muted)]">
             {CRISIS.footer}
