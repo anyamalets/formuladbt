@@ -60,7 +60,16 @@ def main():
 
     # Прозрачная марка для TopNav/Footer
     mark = remove_gray_background(square)
-    mark = mark.resize((512, 512), Image.LANCZOS)
+    # Кропаем bounding box непрозрачных пикселей — убираем пустое поле
+    bbox = mark.getbbox()
+    if bbox:
+        mark = mark.crop(bbox)
+    # Делаем квадратом и ресайзим
+    mw, mh = mark.size
+    mside = max(mw, mh)
+    square_mark = Image.new("RGBA", (mside, mside), (0, 0, 0, 0))
+    square_mark.paste(mark, ((mside - mw) // 2, (mside - mh) // 2), mark)
+    mark = square_mark.resize((512, 512), Image.LANCZOS)
     mark.save(DST_MARK, "PNG", optimize=True)
     print(f"  OK  {DST_MARK.relative_to(ROOT)} ({mark.size})")
 
