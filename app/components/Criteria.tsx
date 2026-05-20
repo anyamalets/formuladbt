@@ -1,24 +1,5 @@
+import { CircleCheckBig } from "lucide-react";
 import { CRITERIA } from "../data/content";
-
-function CheckIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width="24"
-      height="24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="text-[var(--color-accent)] flex-shrink-0 mt-0.5"
-      aria-hidden="true"
-    >
-      <circle cx="12" cy="12" r="10" />
-      <path d="m9 12 2 2 4-4" />
-    </svg>
-  );
-}
 
 export default function Criteria() {
   return (
@@ -39,7 +20,12 @@ export default function Criteria() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 max-w-5xl mx-auto">
           {CRITERIA.items.map((item, i) => (
             <div key={i} className="flex gap-4">
-              <CheckIcon />
+              <CircleCheckBig
+                size={24}
+                strokeWidth={2}
+                className="text-[var(--color-accent)] flex-shrink-0 mt-0.5"
+                aria-hidden="true"
+              />
               <div>
                 <h3 className="text-[17px] md:text-[18px] font-semibold text-[var(--color-fg)] mb-2">
                   {item.title}

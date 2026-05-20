@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import { FAQ_ITEMS } from "../data/faq";
 
 export default function Faq() {
@@ -17,27 +18,20 @@ export default function Faq() {
           {FAQ_ITEMS.map((item, i) => (
             <details
               key={i}
-              className="group rounded-xl border border-[var(--color-border)] bg-white open:bg-[var(--color-surface-muted)] transition-colors"
+              className="group rounded-xl border border-[var(--color-border)] bg-white open:bg-[var(--color-surface-muted)]/40"
             >
-              <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 rounded-xl">
+              <summary className="flex items-center justify-between gap-4 list-none px-6 py-5 rounded-xl">
                 <span className="text-[17px] font-medium text-[var(--color-fg)] leading-[1.4]">
                   {item.q}
                 </span>
-                <svg
-                  viewBox="0 0 24 24"
-                  className="shrink-0 h-5 w-5 text-[var(--color-primary)] transition-transform duration-200 group-open:rotate-180"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                <ChevronDown
+                  size={20}
+                  className="shrink-0 text-[var(--color-primary)] transition-transform duration-200 group-open:rotate-180"
                   aria-hidden="true"
-                >
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
+                />
               </summary>
-              <div className="px-6 pb-6">
-                <p className="text-[16px] leading-[1.65] text-[var(--color-fg-muted)]">
+              <div>
+                <p className="px-6 pb-6 text-[16px] leading-[1.65] text-[var(--color-fg-muted)]">
                   {item.a}
                 </p>
               </div>

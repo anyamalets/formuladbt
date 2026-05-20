@@ -11,6 +11,7 @@ import FormSection from "./components/FormSection";
 import Faq from "./components/Faq";
 import Contacts from "./components/Contacts";
 import Footer from "./components/Footer";
+import StickyMobileCta from "./components/StickyMobileCta";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
         <Contacts />
       </main>
       <Footer />
+      <StickyMobileCta />
     </>
   );
 }

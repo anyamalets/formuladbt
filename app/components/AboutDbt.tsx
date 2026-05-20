@@ -12,7 +12,7 @@ export default function AboutDbt() {
             {ABOUT_DBT.title}
           </h2>
 
-          <div className="mt-10 md:mt-12 space-y-6 text-[17px] md:text-[18px] leading-[1.7] text-[var(--color-fg)]">
+          <div className="mt-10 md:mt-12 space-y-6 text-[17px] md:text-[18px] leading-[1.7] text-[var(--color-fg)] max-w-prose mx-auto">
             {ABOUT_DBT.paragraphs.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
